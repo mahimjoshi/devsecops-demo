@@ -2,11 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tic-tac-toe-ingress
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx  # ✅ Use this instead of annotation
   rules:
-    - host: tic-tac-toe.punvlmdl01.dsone.3ds.com  # Replace with your actual domain
+    - host: tic-tac-toe.punvlmdl01.dsone.3ds.com  # ✅ Use your actual domain
       http:
         paths:
           - path: /
@@ -16,7 +15,7 @@ spec:
                 name: tic-tac-toe
                 port:
                   number: 80
-    - host: argocd.punvlmdl01.dsone.3ds.com  # Replace with your actual domain
+    - host: argocd.punvlmdl01.dsone.3ds.com  # ✅ Use your actual domain
       http:
         paths:
           - path: /
@@ -25,4 +24,4 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80  # Change from 443 to 80 for HTTP
+                  number: 80
